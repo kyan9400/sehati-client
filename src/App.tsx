@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Register from "./pages/auth/Register";
-import Login from "./pages/auth/Login";
-import Terms from "./pages/extra/Terms";
-import Privacy from "./pages/extra/Privacy";
-import Dashboard from "./pages/Dashboard";
+import Register from "./features/auth/Register";
+import Login from "./features/auth/Login";
+import Terms from "./features/legal/Terms";
+import Privacy from "./features/legal/Privacy";
+import Dashboard from "./features/dashboard/Dashboard";
 
 
 const App = () => {

@@ -1,7 +1,6 @@
-import React from "react";
-import KPICard from "../components/KPICard";
-import AppointmentTable from "../components/AppointmentTable";
-import ChartPlaceholder from "../components/ChartPlaceholder";
+import AppointmentTable from "../../components/common/AppointmentTable";
+import ChartPlaceholder from "../../components/common/ChartPlaceholder";
+import KPICard from "../../components/common/KPICard";
 
 const Dashboard = () => {
   return (
