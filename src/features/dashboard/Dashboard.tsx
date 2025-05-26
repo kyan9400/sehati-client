@@ -1,6 +1,7 @@
 import AppointmentTable from "../../components/common/AppointmentTable";
 import ChartPlaceholder from "../../components/common/ChartPlaceholder";
 import KPICard from "../../components/common/KPICard";
+import TopBar from "../../layouts/TopBar"; // ✅ You already imported this
 
 const Dashboard = () => {
   return (
