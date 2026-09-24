@@ -63,6 +63,12 @@ src/
     legal/                # Terms, Privacy
 ```
 
+## Deployment
+
+The app is deployed on Netlify: https://mellifluous-strudel-16e4ee.netlify.app
+
+Netlify builds with `CI=true`, and under that setting `react-scripts build` treats any ESLint warning as an error, so the source has to stay warning-free for a deploy to succeed (or `CI` has to be set to `false` in the site's build environment).
+
 ## Continuous integration
 
 `.github/workflows/ci.yml` runs `npm ci`, `npx tsc --noEmit` and `npm run build` on every push and pull request to `master`.
