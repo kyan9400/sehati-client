@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Sehati – Clinic Management Dashboard (client)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Front-end for **Sehati**, a clinic management system. It is a single-page React + TypeScript app styled with Tailwind CSS, with pages for the dashboard, patients, appointments, doctors and settings, plus login/register and legal pages.
 
-## Available Scripts
+The app is currently a **UI prototype**: every page renders hard-coded sample data kept in component state, there is no API layer yet (`axios` is installed but not used), and the login form redirects straight to the dashboard without checking credentials.
 
-In the project directory, you can run:
+## Pages
 
-### `npm start`
+| Route | Page | What it does |
+| --- | --- | --- |
+| `/`, `/login` | Login | Email/password form; submitting navigates to `/dashboard` |
+| `/register` | Register | Sign-up form with a role select (Patient / Doctor / Admin) and Terms & Privacy modals |
+| `/dashboard` | Dashboard | KPI cards (patients, appointments, doctors, revenue), a Chart.js line chart of monthly patient visits and a recent-appointments table |
+| `/patients` | Patients | Searchable patient table with an "Add Patient" modal (in-memory) |
+| `/appointments` | Appointments | Searchable appointments table with an "Add Appointment" modal (in-memory) |
+| `/doctors` | Doctors | Doctor profile cards (name, specialty, phone, email) |
+| `/settings` | Settings | Notification email and language (English / Arabic) form |
+| `/terms`, `/privacy` | Legal | Terms of Service and Privacy Policy pages |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+All routes except login/register share a top navigation bar (`src/layouts/MainLayout.tsx`).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Stack
 
-### `npm test`
+- [React](https://react.dev/) 18 + [TypeScript](https://www.typescriptlang.org/) 5
+- [Create React App](https://create-react-app.dev/) (`react-scripts` 5)
+- [react-router-dom](https://reactrouter.com/) 7
+- [Tailwind CSS](https://tailwindcss.com/) 3 (PostCSS + Autoprefixer)
+- [Chart.js](https://www.chartjs.org/) 4 via `react-chartjs-2`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting started
 
-### `npm run build`
+Requirements: Node.js 18 or newer and npm.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm ci          # install dependencies (uses package-lock.json)
+npm start       # dev server on http://localhost:3000
+npm run build   # production build into build/
+npx tsc --noEmit  # typecheck
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm test` runs the Create React App test runner, but there are no test files yet.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> The repo ships an `.npmrc` with `legacy-peer-deps=true`. `react-scripts` 5 declares an optional peer dependency on TypeScript 3/4 while this project uses TypeScript 5; without that setting npm 7+ refuses to install.
 
-### `npm run eject`
+There are no environment variables to configure.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+  App.tsx                 # routes
+  index.tsx               # entry point
+  index.css               # Tailwind layers + shared .input class
+  layouts/                # MainLayout (Outlet + TopBar), TopBar
+  components/common/      # KPICard, ChartPlaceholder, AppointmentTable, Modal, PolicyModal, Logo
+  features/
+    auth/                 # Login, Register
+    dashboard/            # Dashboard
+    patients/             # Patients
+    appointments/         # Appointments
+    doctors/              # Doctors
+    settings/             # Settings
+    legal/                # Terms, Privacy
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Continuous integration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`.github/workflows/ci.yml` runs `npm ci`, `npx tsc --noEmit` and `npm run build` on every push and pull request to `master`.
 
-## Learn More
+## Related
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [sehati-landing-client](https://github.com/kyan9400/sehati-landing-client) – the public marketing landing page for the same product.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT](LICENSE)
